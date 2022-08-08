@@ -1,12 +1,25 @@
 /*
 2. Show the top 3 departments where most employees work
-Partial Ans:
-select distinct m.* from hr.employees e ,  hr.employees m where m.employee_id = e.manager_id;
-
 Ans:
 */
-SELECT DISTINCT e.*, m.department_name
-FROM hr.employees e
-INNER JOIN hr.departments m
-ON e.department_id = m.department_id
-WHERE m.manager_id = e.employee_id;
+SELECT d.department_name, d.department_id, COUNT(e.employee_id) AS Total_Employee
+FROM hr.departments d
+INNER JOIN hr.employees e
+ON d.department_id = e.department_id
+GROUP BY d.department_name, d.department_id
+ORDER BY Total_Employee DESC
+FETCH FIRST 3 ROWS ONLY;
+
+/*
+Another Ans:
+*/
+SELECT *
+FROM(
+    SELECT d.department_name, d.department_id, COUNT(e.employee_id) AS Total_Employee
+    FROM hr.departments d
+    INNER JOIN hr.employees e
+    ON d.department_id = e.department_id
+    GROUP BY d.department_name, d.department_id
+    ORDER BY Total_Employee DESC
+)
+WHERE ROWNUM <= 3;

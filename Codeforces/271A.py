@@ -1,8 +1,8 @@
 y = int(input())
 temp = y+1
-arrT = []
 say = True
 while say == True:
+    arrT = []
     temp2 = temp
     while temp > 0:
         rem = temp % 10

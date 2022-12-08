@@ -1,22 +1,16 @@
 y = int(input())
-temp = y+1
-say = True
-while say == True:
-    arrT = []
-    temp2 = temp
-    while temp > 0:
-        rem = temp % 10
-        arrT.append(rem)
-        temp = temp // 10
-    
-    for i in range(len(arrT)):
-        k= i+1
-        for j in range(k, len(arrT)):
-            if arrT[i] == arrT[j]:
-                say = True
-                break
-                break
-            else:
-                say = False
-    temp2 += 1
-print(temp2)
+y2 = y+1
+while y2 > y:
+    test = y2
+    yArr = []
+    ySet = set()
+    while test > 0:
+        rem = test % 10
+        test = test // 10
+        yArr.append(rem)
+        ySet.add(rem)
+    if len(yArr)==len(ySet):
+        break
+    else:
+        y2 = y2 + 1
+print(y2)
